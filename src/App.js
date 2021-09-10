@@ -7,6 +7,14 @@ import RestroomList from "./components/RestroomList";
 import RestroomDetails from "./components/RestroomDetails";
 
 function App() {
+    const [targetLocation, setTargetLocation] = useState({});
+    const [restroomList, setRestroomList] = useState([]);
+    const [selectedRestroom, setSelectedRestroom] = useState({});
+
+    useEffect(() => {
+        console.log("useEffect for App triggered");
+    }, [targetLocation]);
+
     return (
         <div className="App">
             <header className="App-header">
@@ -15,17 +23,28 @@ function App() {
                 </Link>
             </header>
             <main>
-                <LocationForm />
+                <LocationForm onSubmit={setTargetLocation} />
                 <Route path="/" exact component={<Homepage />} />
                 <Route
                     path="/restrooms"
                     exact
-                    render={() => <RestroomList />}
+                    render={() => (
+                        <RestroomList
+                            location={targetLocation}
+                            restrooms={restroomList}
+                            onRestroomClick={setSelectedRestroom}
+                        />
+                    )}
                 />
                 <Route
                     path="/restrooms/:id"
                     exact
-                    render={() => <RestroomDetails />}
+                    render={(routerProps) => (
+                        <RestroomDetails
+                            id={routerProps.match.params.id}
+                            data={selectedRestroom}
+                        />
+                    )}
                 />
             </main>
         </div>

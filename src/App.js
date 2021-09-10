@@ -24,7 +24,7 @@ function App() {
             </header>
             <main>
                 <LocationForm onSubmit={setTargetLocation} />
-                <Route path="/" exact component={<Homepage />} />
+                <Route path="/" exact component={Homepage} />
                 <Route
                     path="/restrooms"
                     exact

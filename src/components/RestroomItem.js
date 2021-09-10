@@ -12,7 +12,7 @@ function RestroomItem({ data, onClick }) {
     return (
         <div>
             <p onClick={onRestroomClick}>
-                {data.name} - {data.distance} miles
+                {data.name} - {data.distance.toFixed(2)} miles
             </p>
         </div>
     );

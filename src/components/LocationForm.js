@@ -27,12 +27,30 @@ function LocationForm({ onSubmit }) {
         //         };
         //         onSubmit(locationData);
         //     })
-        //     .catch((error) => console.error(error));
+        //     .catch((error) => console.log(error));
+    };
+
+    const onCurrentLocationButtonClick = () => {
+        const currentLocationData = { location: "Current Location" };
+
+        const locationPromise = new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+
+        locationPromise.then((position) => {
+            console.log(position.coords);
+            currentLocationData.latitude = position.coords.latitude;
+            currentLocationData.longitude = position.coords.longitude;
+            onSubmit(currentLocationData);
+        });
     };
     return (
         <form onSubmit={formSubmitHandler}>
             <input type="text" id="locationInput" />
             <button type="submit">Submit</button>
+            <button type="button" onClick={onCurrentLocationButtonClick}>
+                Current Location
+            </button>
         </form>
     );
 }

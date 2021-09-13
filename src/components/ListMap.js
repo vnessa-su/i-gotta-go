@@ -30,11 +30,22 @@ function ListMap({ location, restrooms }) {
         <LoadScript
             googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
         >
-            <GoogleMap
-                mapContainerStyle={mapStyles}
-                zoom={14}
-                center={center}
-            ></GoogleMap>
+            <GoogleMap mapContainerStyle={mapStyles} zoom={14} center={center}>
+                {restrooms.map((restroom) => {
+                    const latLng = {
+                        lat: restroom.latitude,
+                        lng: restroom.longitude,
+                    };
+                    return (
+                        <Marker
+                            key={restroom.name}
+                            position={latLng}
+                            title={restroom.name}
+                            onClick={markerClickHandler(restroom)}
+                        />
+                    );
+                })}
+            </GoogleMap>
         </LoadScript>
     );
 }

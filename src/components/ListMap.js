@@ -46,6 +46,18 @@ function ListMap({ location, restrooms }) {
                         />
                     );
                 })}
+                {selectedRestroom.name && (
+                    <InfoWindow
+                        position={{
+                            lat: selectedRestroom.latitude,
+                            lng: selectedRestroom.longitude,
+                        }}
+                        clickable={true}
+                        onCloseClick={() => setSelectedRestroom({})}
+                    >
+                        <p>{selectedRestroom.name}</p>
+                    </InfoWindow>
+                )}
             </GoogleMap>
         </LoadScript>
     );

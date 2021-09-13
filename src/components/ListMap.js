@@ -43,6 +43,7 @@ function ListMap({ location, restrooms }) {
                             position={latLng}
                             title={restroom.name}
                             onClick={markerClickHandler(restroom)}
+                            icon={restroomIcon}
                         />
                     );
                 })}

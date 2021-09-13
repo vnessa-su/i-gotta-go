@@ -31,6 +31,7 @@ function ListMap({ location, restrooms }) {
             googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
         >
             <GoogleMap mapContainerStyle={mapStyles} zoom={14} center={center}>
+                <Marker key={location.location} position={center} />
                 {restrooms.map((restroom) => {
                     const latLng = {
                         lat: restroom.latitude,

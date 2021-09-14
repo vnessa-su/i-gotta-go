@@ -7,6 +7,7 @@ import RestroomList from "./components/RestroomList";
 import RestroomDetails from "./components/RestroomDetails";
 import axios from "axios";
 import { LoadScript } from "@react-google-maps/api";
+import toiletPaperLogo from "./img/toilet-paper.png";
 
 const dummyData = [
     {
@@ -257,26 +258,31 @@ function App() {
     useEffect(() => {
         if (targetLocation.location) {
             const url = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&lat=${targetLocation.location.lat}&lng=${targetLocation.location.lng}`;
-            // console.log(url);
-            // setRestroomList(dummyData);
-            // history.push({ pathname: "/restrooms" });
+            console.log(url);
+            setRestroomList(dummyData);
+            history.push({ pathname: "/restrooms" });
 
-            axios
-                .get(url)
-                .then((response) => {
-                    setRestroomList(response.data);
-                    history.push({ pathname: "/restrooms" });
-                })
-                .catch((error) => console.error(error));
+            // axios
+            //     .get(url)
+            //     .then((response) => {
+            //         setRestroomList(response.data);
+            //         history.push({ pathname: "/restrooms" });
+            //     })
+            //     .catch((error) => console.error(error));
         }
     }, [targetLocation]);
 
     return (
         <div className="App">
             <header className="App-header">
-                <Link to="/">
+                <Link to="/restrooms">
                     <h1>I Gotta Go</h1>
                 </Link>
+                <img
+                    src={toiletPaperLogo}
+                    alt="Toilet paper on green circle background"
+                    id="header-logo"
+                />
             </header>
             <main>
                 <LocationForm onSubmit={setTargetLocation} />

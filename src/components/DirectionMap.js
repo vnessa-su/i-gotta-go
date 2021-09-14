@@ -32,13 +32,13 @@ function DirectionMap({ startLocation, endLocation }) {
         <GoogleMap
             mapContainerStyle={mapStyles}
             zoom={14}
-            center={startLocation}
+            center={startLocation.location}
             showsUserLocation={true}
         >
             <DirectionsService
                 options={{
-                    destination: endLocation,
-                    origin: startLocation,
+                    destination: endLocation.location,
+                    origin: startLocation.location,
                     travelMode: "WALKING",
                 }}
                 callback={directionsCallback}
@@ -49,11 +49,14 @@ function DirectionMap({ startLocation, endLocation }) {
                     suppressMarkers: true,
                 }}
             />
-            <Marker position={startLocation} title="Starting Point" />
             <Marker
-                position={endLocation}
+                position={startLocation.location}
+                title={startLocation.name}
+            />
+            <Marker
+                position={endLocation.location}
                 icon={restroomIcon}
-                title="Restroom"
+                title={endLocation.name}
             />
         </GoogleMap>
     );

@@ -9,15 +9,20 @@ function RestroomDetails({ data, startLocation }) {
         history.go(0);
     }
 
-    const endLatLng = { lat: data.latitude, lng: data.longitude };
-    const startLatLng = startLocation.location;
+    const endLocation = {
+        name: data.name,
+        location: { lat: data.latitude, lng: data.longitude },
+    };
 
     return (
         <div>
             <h2>
                 {data.name} - {data.distance.toFixed(2)} miles
             </h2>
-            <DirectionMap startLocation={startLatLng} endLocation={endLatLng} />
+            <DirectionMap
+                startLocation={startLocation}
+                endLocation={endLocation}
+            />
             <div>
                 <p>
                     <strong>Address:</strong> {data.street}, {data.city},{" "}

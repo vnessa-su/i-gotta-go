@@ -2,32 +2,31 @@ import React from "react";
 import axios from "axios";
 
 const dummyData = {
-    location: "Atlanta, GA",
-    latitude: 33.749099,
-    longitude: -84.390185,
+    name: "Atlanta, GA",
+    location: { lat: 33.749099, lng: -84.390185 },
 };
 
 function LocationForm({ onSubmit }) {
     const formSubmitHandler = (e) => {
         e.preventDefault();
         const locationText = document.getElementById("locationInput").value;
-        const url = `http://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_GEOCODE_API_KEY}&location=${locationText}`;
-        console.log(url);
-        onSubmit(dummyData);
+        // const url = `http://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_GEOCODE_API_KEY}&location=${locationText}`;
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${locationText}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+        // console.log(url);
+        // onSubmit(dummyData);
 
-        // axios
-        //     .get(url)
-        //     .then((response) => {
-        //         console.log(response.data);
-        //         const latLngData = response.data.results[0].locations[0].latLng;
-        //         const locationData = {
-        //             location: locationText,
-        //             latitude: latLngData.lat,
-        //             longitude: latLngData.lng,
-        //         };
-        //         onSubmit(locationData);
-        //     })
-        //     .catch((error) => console.log(error));
+        axios
+            .get(url)
+            .then((response) => {
+                console.log(response.data);
+                const latLngData = response.data.results[0].geometry.location;
+                const locationData = {
+                    name: locationText,
+                    location: latLngData,
+                };
+                onSubmit(locationData);
+            })
+            .catch((error) => console.log(error));
     };
 
     const onCurrentLocationButtonClick = () => {
@@ -39,8 +38,10 @@ function LocationForm({ onSubmit }) {
 
         locationPromise.then((position) => {
             console.log(position.coords);
-            currentLocationData.latitude = position.coords.latitude;
-            currentLocationData.longitude = position.coords.longitude;
+            currentLocationData.location = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            };
             onSubmit(currentLocationData);
         });
     };

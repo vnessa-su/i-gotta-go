@@ -18,18 +18,15 @@ function ListMap({ location, restrooms }) {
         width: "50%",
     };
 
-    const center = {
-        lat: location.latitude,
-        lng: location.longitude,
-    };
+    const center = location.location;
 
-    if (!location.location || !restrooms[0].name) {
+    if (!center.lat || !restrooms[0].name) {
         history.push({ pathname: "/" });
     }
 
     return (
         <GoogleMap mapContainerStyle={mapStyles} zoom={14} center={center}>
-            <Marker key={location.location} position={center} />
+            <Marker key={location.name} position={center} />
             {restrooms.map((restroom) => {
                 const latLng = {
                     lat: restroom.latitude,

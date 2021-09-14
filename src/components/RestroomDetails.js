@@ -10,10 +10,7 @@ function RestroomDetails({ data, startLocation }) {
     }
 
     const endLatLng = { lat: data.latitude, lng: data.longitude };
-    const startLatLng = {
-        lat: startLocation.latitude,
-        lng: startLocation.longitude,
-    };
+    const startLatLng = startLocation.location;
 
     return (
         <div>

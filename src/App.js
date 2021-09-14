@@ -256,18 +256,18 @@ function App() {
 
     useEffect(() => {
         if (targetLocation.location) {
-            const url = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&lat=${targetLocation.latitude}&lng=${targetLocation.longitude}`;
-            console.log(url);
-            setRestroomList(dummyData);
-            history.push({ pathname: "/restrooms" });
+            const url = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&lat=${targetLocation.location.lat}&lng=${targetLocation.location.lng}`;
+            // console.log(url);
+            // setRestroomList(dummyData);
+            // history.push({ pathname: "/restrooms" });
 
-            // axios
-            //     .get(url)
-            //     .then((response) => {
-            //         setRestroomList(response.data);
-            //         history.push({ pathname: "/restrooms" });
-            //     })
-            //     .catch((error) => console.error(error));
+            axios
+                .get(url)
+                .then((response) => {
+                    setRestroomList(response.data);
+                    history.push({ pathname: "/restrooms" });
+                })
+                .catch((error) => console.error(error));
         }
     }, [targetLocation]);
 

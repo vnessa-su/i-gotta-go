@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Route, Link, useHistory } from "react-router-dom";

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+import { Link, useHistory } from "react-router-dom";
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import restroomIcon from "../img/restroom_marker.png";
 
-function ListMap({ location, restrooms }) {
+function ListMap({ location, restrooms, onLinkClick }) {
     const history = useHistory();
     const [selectedRestroom, setSelectedRestroom] = useState({});
 
     const markerClickHandler = (restroom) => {
         return () => {
             setSelectedRestroom(restroom);
+            onLinkClick(restroom);
         };
     };
 
@@ -20,7 +21,7 @@ function ListMap({ location, restrooms }) {
 
     const center = location.location;
 
-    if (!center.lat || !restrooms[0].name) {
+    if (!location.name || !restrooms[0].name) {
         history.push({ pathname: "/" });
     }
 
@@ -49,9 +50,10 @@ function ListMap({ location, restrooms }) {
                         lng: selectedRestroom.longitude,
                     }}
                     clickable={true}
-                    onCloseClick={() => setSelectedRestroom({})}
                 >
-                    <p>{selectedRestroom.name}</p>
+                    <Link to={`/restrooms/${selectedRestroom.id}`}>
+                        {selectedRestroom.name}
+                    </Link>
                 </InfoWindow>
             )}
         </GoogleMap>

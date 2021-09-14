@@ -6,7 +6,11 @@ function RestroomList({ location, restrooms, onRestroomClick }) {
     return (
         <div>
             <h2>Restrooms near {location.name}</h2>
-            <ListMap location={location} restrooms={restrooms} />
+            <ListMap
+                location={location}
+                restrooms={restrooms}
+                onLinkClick={onRestroomClick}
+            />
             {restrooms.map((restroom) => (
                 <RestroomItem
                     key={restroom.id}

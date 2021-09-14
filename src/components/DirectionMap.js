@@ -24,8 +24,10 @@ function DirectionMap({ startLocation, endLocation }) {
     };
 
     const mapStyles = {
-        height: "50vh",
-        width: "50%",
+        minHeight: "50vh",
+        minWidth: "50%",
+        display: "block",
+        margin: "0 auto",
     };
 
     return (

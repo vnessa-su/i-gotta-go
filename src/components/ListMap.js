@@ -14,19 +14,20 @@ function ListMap({ location, restrooms, onLinkClick }) {
         };
     };
 
-    const mapStyles = {
-        height: "50vh",
-        width: "50%",
-    };
-
     const center = location.location;
 
     if (!location.name || !restrooms[0].name) {
         history.push({ pathname: "/" });
     }
+    const mapStyles = {
+        minHeight: "50vh",
+        minWidth: "95%",
+        display: "block",
+        margin: "0 auto",
+    };
 
     return (
-        <GoogleMap mapContainerStyle={mapStyles} zoom={14} center={center}>
+        <GoogleMap mapContainerStyle={mapStyles} zoom={15} center={center}>
             <Marker key={location.name} position={center} />
             {restrooms.map((restroom) => {
                 const latLng = {
@@ -51,9 +52,12 @@ function ListMap({ location, restrooms, onLinkClick }) {
                     }}
                     clickable={true}
                 >
-                    <Link to={`/restrooms/${selectedRestroom.id}`}>
-                        {selectedRestroom.name}
-                    </Link>
+                    <div>
+                        <Link to={`/restrooms/${selectedRestroom.id}`}>
+                            {selectedRestroom.name}
+                        </Link>
+                        <p>{selectedRestroom.distance.toFixed(2)} miles</p>
+                    </div>
                 </InfoWindow>
             )}
         </GoogleMap>

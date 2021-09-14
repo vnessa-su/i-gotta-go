@@ -6,6 +6,7 @@ import LocationForm from "./components/LocationForm";
 import RestroomList from "./components/RestroomList";
 import RestroomDetails from "./components/RestroomDetails";
 import axios from "axios";
+import { LoadScript } from "@react-google-maps/api";
 
 const dummyData = [
     {
@@ -257,16 +258,16 @@ function App() {
         if (targetLocation.location) {
             const url = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&lat=${targetLocation.latitude}&lng=${targetLocation.longitude}`;
             console.log(url);
-            // setRestroomList(dummyData);
-            // history.push({ pathname: "/restrooms" });
+            setRestroomList(dummyData);
+            history.push({ pathname: "/restrooms" });
 
-            axios
-                .get(url)
-                .then((response) => {
-                    setRestroomList(response.data);
-                    history.push({ pathname: "/restrooms" });
-                })
-                .catch((error) => console.error(error));
+            // axios
+            //     .get(url)
+            //     .then((response) => {
+            //         setRestroomList(response.data);
+            //         history.push({ pathname: "/restrooms" });
+            //     })
+            //     .catch((error) => console.error(error));
         }
     }, [targetLocation]);
 
@@ -280,28 +281,43 @@ function App() {
             <main>
                 <LocationForm onSubmit={setTargetLocation} />
                 <Route path="/" exact component={Homepage} />
-                <Route
-                    path="/restrooms"
-                    exact
-                    render={() => (
-                        <RestroomList
-                            location={targetLocation}
-                            restrooms={restroomList}
-                            onRestroomClick={setSelectedRestroom}
-                        />
-                    )}
-                />
-                <Route
-                    path="/restrooms/:id"
-                    exact
-                    render={(routerProps) => (
-                        <RestroomDetails
-                            id={routerProps.match.params.id}
-                            data={selectedRestroom}
-                        />
-                    )}
-                />
+                <LoadScript
+                    googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+                >
+                    <Route
+                        path="/restrooms"
+                        exact
+                        render={() => (
+                            <RestroomList
+                                location={targetLocation}
+                                restrooms={restroomList}
+                                onRestroomClick={setSelectedRestroom}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/restrooms/:id"
+                        exact
+                        render={(routerProps) => (
+                            <RestroomDetails
+                                id={routerProps.match.params.id}
+                                data={selectedRestroom}
+                                startLocation={targetLocation}
+                            />
+                        )}
+                    />
+                </LoadScript>
             </main>
+            <div>
+                Icons made by{" "}
+                <a href="https://www.freepik.com" title="Freepik">
+                    Freepik
+                </a>{" "}
+                from{" "}
+                <a href="https://www.flaticon.com/" title="Flaticon">
+                    www.flaticon.com
+                </a>
+            </div>
         </div>
     );
 }

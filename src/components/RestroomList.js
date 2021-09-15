@@ -11,10 +11,10 @@ function RestroomList({ location, restrooms, onRestroomClick }) {
     };
     return (
         <div>
-            <h2>
+            <h1>
                 Restrooms near{" "}
                 <span className="location-name-text">{location.name}</span>
-            </h2>
+            </h1>
             <ListMap
                 location={location}
                 restrooms={restrooms}

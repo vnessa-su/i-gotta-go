@@ -1,7 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Glory&family=Syncopate:wght@700&display=swap");
 
 .App {
     text-align: center;
+    font-family: "Glory", sans-serif;
+    font-size: large;
 }
 
 .App-header {
@@ -31,4 +33,13 @@
 
 main {
     padding: 10px;
+}
+
+.location-name-text {
+    text-transform: capitalize;
+    text-align: left;
+}
+
+p {
+    margin: 0;
 }

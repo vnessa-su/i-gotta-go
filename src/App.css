@@ -69,3 +69,7 @@ small {
     text-align: left;
     font-size: 12px;
 }
+
+.filter-icon {
+    margin: 0px 5px 0px 5px;
+}

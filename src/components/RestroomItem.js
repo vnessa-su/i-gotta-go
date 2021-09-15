@@ -1,6 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faTransgenderAlt,
+    faWheelchair,
+    faBaby,
+} from "@fortawesome/free-solid-svg-icons";
 
 function RestroomItem({ data, onClick }) {
     const history = useHistory();
@@ -22,7 +28,30 @@ function RestroomItem({ data, onClick }) {
             <p className="location-name-text">
                 <strong>{data.name}</strong>
             </p>
-            <p>{data.distance.toFixed(2)} miles</p>
+            <div style={{ display: "flex" }}>
+                {data.unisex && (
+                    <FontAwesomeIcon
+                        icon={faTransgenderAlt}
+                        title="Unisex"
+                        className="filter-icon"
+                    />
+                )}
+                {data.accessible && (
+                    <FontAwesomeIcon
+                        icon={faWheelchair}
+                        title="Accessible"
+                        className="filter-icon"
+                    />
+                )}
+                {data.changing_table && (
+                    <FontAwesomeIcon
+                        icon={faBaby}
+                        title="Changing Table"
+                        className="filter-icon"
+                    />
+                )}
+                <p>{data.distance.toFixed(2)} miles</p>
+            </div>
         </ListGroup.Item>
     );
 }

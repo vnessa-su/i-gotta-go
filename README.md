@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# I Gotta Go
 
-## Available Scripts
+#### By Vanessa Su
 
-In the project directory, you can run:
+#### To see my live website go to https://i-gotta-go-now.herokuapp.com/
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The I Gotta Go web app helps the user find the closest public restrooms to an input or automatically detected location. A list and a map are generated with the results that they can click on to view directions and more information on the restroom.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Homepage](homepage-screenshot.png)
 
-### `npm test`
+![Restroom List](restroom-list-screenshot.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Restroom Details](restroom-details-screenshot.png)
 
-### `npm run build`
+## User Story
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   As a user I want to be able to input a location into the form
+-   As a user I want to be able to choose automation location detection
+-   As a user I want to be able to filter my results to only show unisex and/or accessible restrooms
+-   As a user I want to hit the Submit button the form to set the location and filter parameters
+-   As a user I want to see a list of nearby restrooms once the location is set
+-   As a user I want to see a map with pins of the location of the results
+-   As a user I want to be able to click on a list item or map marker link to see its details
+-   As a user I want to see a map with directions from location when looking at location details
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   React
+-   Node
+-   JavaScript
+-   HTML
+-   CSS
+-   [Refuge Restrooms API](https://www.refugerestrooms.org/api/docs/)
+-   [Google Maps API](https://developers.google.com/maps)
 
-### `npm run eject`
+## Setup/Installation Requirements
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Prerequisites
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   [Node](https://nodejs.org/en/)
+-   A text editor like [VS Code](https://code.visualstudio.com/)
+-   [Google Maps API](https://developers.google.com/maps) key
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Installation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone the repository: `$ git clone https://github.com/vnessa-su/i-gotta-go.git`
+2. Navigate to the `/i-gotta-go` directory on your computer
+3. Open with your preferred text editor to view the code base
+4. To start a development server and view the project in the browser:
+    - Navigate to `/i-gotta-go` in your command line
+    - Run the command `npm install` to install dependencies
+    - Optionally, run the commmand `npm run build` to make a bundle of the files
+    - Finally, run the command `npm run start` to start a development server
 
-## Learn More
+### Obtain API key
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Go to [Google Maps API](https://developers.google.com/maps) website
+2. Press the `Get started` button
+3. Follow the prompts to create an account, set up a project and obtain an API key.
+4. Create a .env.local file in the `/i-gotta-go` directory
+5. Open the .env.local file in your text editor
+6. Add `REACT_APP_GOOGLE_MAPS_API_KEY={Your API Key Here}` to the file, replacing `{Your Api Key Here}` with the API key obtained in step 3
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Known Bugs
 
-### Code Splitting
+-   Weird errors in the console around the Google Map Directions API, possibly something to do with the `@react-google-maps/api `module
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contact Information
 
-### Analyzing the Bundle Size
+_For any questions or comments, please reach out through GitHub._
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
+[MIT License](license)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Copyright (c) 2021 Vanessa Su

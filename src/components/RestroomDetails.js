@@ -74,34 +74,34 @@ function RestroomDetails({ data, startLocation }) {
             />
             <Container style={containerStyle}>
                 <Row>
-                    <Col sm={3} style={labelStyle}>
+                    <Col xs={3} style={labelStyle}>
                         <p>
                             <strong>Address:</strong>
                         </p>
                     </Col>
-                    <Col sm={9} style={infoStyle}>
+                    <Col xs={9} style={infoStyle}>
                         <p>
                             {data.street}, {data.city}, {data.state}
                         </p>
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={3} style={labelStyle}>
+                    <Col xs={3} style={labelStyle}>
                         <p>
                             <strong>Location Directions:</strong>
                         </p>
                     </Col>
-                    <Col sm={9} style={infoStyle}>
+                    <Col xs={9} style={infoStyle}>
                         <p>{data.directions}</p>
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={3} style={labelStyle}>
+                    <Col xs={3} style={labelStyle}>
                         <p>
                             <strong>Comments:</strong>
                         </p>
                     </Col>
-                    <Col sm={9} style={infoStyle}>
+                    <Col xs={9} style={infoStyle}>
                         <p>{data.comment}</p>
                     </Col>
                 </Row>

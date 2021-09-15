@@ -253,25 +253,40 @@ const dummyData = [
 function App() {
     const history = useHistory();
     const [targetLocation, setTargetLocation] = useState({});
+    const [unisexFilter, setUnisexFilter] = useState(false);
+    const [accessibleFilter, setAccessibleFilter] = useState(false);
     const [restroomList, setRestroomList] = useState([]);
     const [selectedRestroom, setSelectedRestroom] = useState({});
 
     useEffect(() => {
         if (targetLocation.location) {
-            const url = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&lat=${targetLocation.location.lat}&lng=${targetLocation.location.lng}`;
+            const url = `https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=20&offset=0&ada=${accessibleFilter}&unisex=${unisexFilter}&lat=${targetLocation.location.lat}&lng=${targetLocation.location.lng}`;
+            // https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=10&offset=0&ada=true&unisex=false&lat=33.749099&lng=-84.390185
             console.log(url);
-            setRestroomList(dummyData);
-            history.push({ pathname: "/restrooms" });
+            // setRestroomList(dummyData);
+            // history.push({ pathname: "/restrooms" });
 
-            // axios
-            //     .get(url)
-            //     .then((response) => {
-            //         setRestroomList(response.data);
-            //         history.push({ pathname: "/restrooms" });
-            //     })
-            //     .catch((error) => console.error(error));
+            axios
+                .get(url)
+                .then((response) => {
+                    setRestroomList(response.data);
+                    history.push({ pathname: "/restrooms" });
+                })
+                .catch((error) => console.error(error));
         }
     }, [targetLocation]);
+
+    const formSubmitHandler = (
+        targetLocation,
+        unisexFilter,
+        accessibleFilter
+    ) => {
+        console.log(unisexFilter);
+        console.log(accessibleFilter);
+        setUnisexFilter(unisexFilter);
+        setAccessibleFilter(accessibleFilter);
+        setTargetLocation(targetLocation);
+    };
 
     return (
         <div className="App">
@@ -286,7 +301,7 @@ function App() {
                 />
             </header>
             <main>
-                <LocationForm onSubmit={setTargetLocation} />
+                <LocationForm onSubmit={formSubmitHandler} />
                 <hr />
                 <Route path="/" exact component={Homepage} />
                 <LoadScript

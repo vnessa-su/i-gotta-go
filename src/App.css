@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap");
+
 .App {
     text-align: center;
 }
@@ -9,13 +11,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
+    font-size: calc(20px + 2vmin);
     color: white;
+    padding: 10px;
+    font-family: "Syncopate", sans-serif;
 }
 
 .App-header a {
     text-decoration: none;
     color: white;
+    margin-top: 10px;
 }
 
 #header-logo {

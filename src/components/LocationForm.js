@@ -3,11 +3,6 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-const dummyData = {
-    name: "Atlanta, GA",
-    location: { lat: 33.749099, lng: -84.390185 },
-};
-
 function LocationForm({ onSubmit }) {
     const formSubmitHandler = (e) => {
         e.preventDefault();
@@ -19,13 +14,10 @@ function LocationForm({ onSubmit }) {
             "accessible-filter-checkbox"
         ).checked;
         const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${locationText}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
-        // console.log(url);
-        // onSubmit(dummyData);
 
         axios
             .get(url)
             .then((response) => {
-                console.log(response.data);
                 const latLngData = response.data.results[0].geometry.location;
                 const locationData = {
                     name: locationText,
@@ -50,7 +42,6 @@ function LocationForm({ onSubmit }) {
         });
 
         locationPromise.then((position) => {
-            console.log(position.coords);
             currentLocationData.location = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,

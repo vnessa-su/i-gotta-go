@@ -12,7 +12,6 @@ function RestroomItem({ data, onClick }) {
     const history = useHistory();
 
     const onRestroomClick = () => {
-        console.log("restroom clicked");
         onClick(data);
         history.push({ pathname: `/restrooms/${data.id}` });
     };

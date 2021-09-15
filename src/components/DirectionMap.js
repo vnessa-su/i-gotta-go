@@ -11,12 +11,9 @@ function DirectionMap({ startLocation, endLocation }) {
     const [directionsData, setDirectionsData] = useState({});
 
     const directionsCallback = (response) => {
-        console.log(response);
-
         if (response !== null) {
             if (response.status === "OK") {
                 setDirectionsData(response);
-                console.log(directionsData);
             } else {
                 console.log("response: ", response);
             }

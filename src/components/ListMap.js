@@ -19,6 +19,7 @@ function ListMap({ location, restrooms, onLinkClick }) {
     if (!location.name || !restrooms[0].name) {
         history.push({ pathname: "/" });
     }
+
     const mapStyles = {
         minHeight: "50vh",
         minWidth: "95%",
@@ -27,7 +28,7 @@ function ListMap({ location, restrooms, onLinkClick }) {
     };
 
     return (
-        <GoogleMap mapContainerStyle={mapStyles} zoom={15} center={center}>
+        <GoogleMap mapContainerStyle={mapStyles} zoom={14} center={center}>
             <Marker key={location.name} position={center} />
             {restrooms.map((restroom) => {
                 const latLng = {
@@ -36,7 +37,7 @@ function ListMap({ location, restrooms, onLinkClick }) {
                 };
                 return (
                     <Marker
-                        key={restroom.name}
+                        key={restroom.id}
                         position={latLng}
                         title={restroom.name}
                         onClick={markerClickHandler(restroom)}

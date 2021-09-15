@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const dummyData = {
     name: "Atlanta, GA",
@@ -10,27 +12,26 @@ function LocationForm({ onSubmit }) {
     const formSubmitHandler = (e) => {
         e.preventDefault();
         const locationText = document.getElementById("locationInput").value;
-        // const url = `http://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_GEOCODE_API_KEY}&location=${locationText}`;
         const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${locationText}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
-        // console.log(url);
-        // onSubmit(dummyData);
+        console.log(url);
+        onSubmit(dummyData);
 
-        axios
-            .get(url)
-            .then((response) => {
-                console.log(response.data);
-                const latLngData = response.data.results[0].geometry.location;
-                const locationData = {
-                    name: locationText,
-                    location: latLngData,
-                };
-                onSubmit(locationData);
-            })
-            .catch((error) => console.log(error));
+        // axios
+        //     .get(url)
+        //     .then((response) => {
+        //         console.log(response.data);
+        //         const latLngData = response.data.results[0].geometry.location;
+        //         const locationData = {
+        //             name: locationText,
+        //             location: latLngData,
+        //         };
+        //         onSubmit(locationData);
+        //     })
+        //     .catch((error) => console.log(error));
     };
 
     const onCurrentLocationButtonClick = () => {
-        const currentLocationData = { location: "Current Location" };
+        const currentLocationData = { name: "Current Location" };
 
         const locationPromise = new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -45,14 +46,47 @@ function LocationForm({ onSubmit }) {
             onSubmit(currentLocationData);
         });
     };
+
+    const formStyle = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexFlow: "row wrap",
+        margin: "10px",
+    };
+
+    const buttonStyle = {
+        margin: "5px",
+    };
+
+    const inputStyle = {
+        width: "300px",
+        margin: "5px",
+    };
+
     return (
-        <form onSubmit={formSubmitHandler}>
-            <input type="text" id="locationInput" />
-            <button type="submit">Submit</button>
-            <button type="button" onClick={onCurrentLocationButtonClick}>
-                Current Location
-            </button>
-        </form>
+        <Form onSubmit={formSubmitHandler} style={formStyle}>
+            <Form.Group controlId="locationInput">
+                <Form.Control
+                    type="text"
+                    placeholder="Enter in a location..."
+                    style={inputStyle}
+                />
+            </Form.Group>
+            <div>
+                <Button variant="primary" type="submit" style={buttonStyle}>
+                    Submit
+                </Button>
+                <Button
+                    variant="secondary"
+                    type="button"
+                    onClick={onCurrentLocationButtonClick}
+                    style={buttonStyle}
+                >
+                    Current Location
+                </Button>
+            </div>
+        </Form>
     );
 }
 

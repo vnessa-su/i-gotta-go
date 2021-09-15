@@ -13,7 +13,7 @@ import {
 
 function RestroomDetails({ data, startLocation }) {
     const history = useHistory();
-    if (!data.distance) {
+    if (!data.name) {
         history.push({ pathname: "/restrooms" });
         history.go(0);
     }

@@ -287,6 +287,7 @@ function App() {
             </header>
             <main>
                 <LocationForm onSubmit={setTargetLocation} />
+                <hr />
                 <Route path="/" exact component={Homepage} />
                 <LoadScript
                     googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
@@ -315,7 +316,7 @@ function App() {
                     />
                 </LoadScript>
             </main>
-            <div>
+            <small>
                 Icons made by{" "}
                 <a href="https://www.freepik.com" title="Freepik">
                     Freepik
@@ -324,7 +325,7 @@ function App() {
                 <a href="https://www.flaticon.com/" title="Flaticon">
                     www.flaticon.com
                 </a>
-            </div>
+            </small>
         </div>
     );
 }

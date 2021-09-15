@@ -43,3 +43,9 @@ main {
 p {
     margin: 0;
 }
+
+small {
+    color: gray;
+    text-align: left;
+    font-size: 12px;
+}

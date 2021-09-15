@@ -45,14 +45,19 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <div style={{ display: "flex" }}>
+                    <Link to="/">
+                        <h1>I Gotta Go</h1>
+                    </Link>
+                    <img
+                        src={toiletPaperLogo}
+                        alt="Toilet paper on green circle background"
+                        id="header-logo"
+                    />
+                </div>
                 <Link to="/restrooms">
-                    <h1>I Gotta Go</h1>
+                    <p>Go To Restrooms List</p>
                 </Link>
-                <img
-                    src={toiletPaperLogo}
-                    alt="Toilet paper on green circle background"
-                    id="header-logo"
-                />
             </header>
             <main>
                 <LocationForm onSubmit={formSubmitHandler} />

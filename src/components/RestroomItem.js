@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import ListGroup from "react-bootstrap/ListGroup";
 
 function RestroomItem({ data, onClick }) {
     const history = useHistory();
@@ -9,12 +10,20 @@ function RestroomItem({ data, onClick }) {
         onClick(data);
         history.push({ pathname: `/restrooms/${data.id}` });
     };
+
+    const listItemStyle = {
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "10px 20px 10px 20px",
+    };
+
     return (
-        <div>
-            <p onClick={onRestroomClick}>
-                {data.name} - {data.distance.toFixed(2)} miles
+        <ListGroup.Item onClick={onRestroomClick} style={listItemStyle}>
+            <p className="location-name-text">
+                <strong>{data.name}</strong>
             </p>
-        </div>
+            <p>{data.distance.toFixed(2)} miles</p>
+        </ListGroup.Item>
     );
 }
 

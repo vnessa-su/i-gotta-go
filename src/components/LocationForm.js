@@ -3,7 +3,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function LocationForm({ onSubmit }) {
+function LocationForm({ onSubmit, onError }) {
     const formSubmitHandler = (e) => {
         e.preventDefault();
         const locationText = document.getElementById("locationInput").value;
@@ -18,14 +18,19 @@ function LocationForm({ onSubmit }) {
         axios
             .get(url)
             .then((response) => {
-                const latLngData = response.data.results[0].geometry.location;
-                const locationData = {
-                    name: locationText,
-                    location: latLngData,
-                };
-                onSubmit(locationData, unisexFilter, accessibleFilter);
+                if (response.data.status === "OK") {
+                    const latLngData =
+                        response.data.results[0].geometry.location;
+                    const locationData = {
+                        name: locationText,
+                        location: latLngData,
+                    };
+                    onSubmit(locationData, unisexFilter, accessibleFilter);
+                } else {
+                    onError(response.data.status);
+                }
             })
-            .catch((error) => console.log(error));
+            .catch((error) => onError(error));
     };
 
     const onCurrentLocationButtonClick = () => {

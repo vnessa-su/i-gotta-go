@@ -9,6 +9,7 @@ import RestroomDetails from "./components/RestroomDetails";
 import axios from "axios";
 import { LoadScript } from "@react-google-maps/api";
 import toiletPaperLogo from "./img/toilet-paper.png";
+import Toast from "react-bootstrap/Toast";
 
 function App() {
     const history = useHistory();
@@ -17,6 +18,8 @@ function App() {
     const [accessibleFilter, setAccessibleFilter] = useState(false);
     const [restroomList, setRestroomList] = useState([]);
     const [selectedRestroom, setSelectedRestroom] = useState({});
+    const [errorMessage, setErrorMessage] = useState("");
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         if (targetLocation.location) {
@@ -28,9 +31,14 @@ function App() {
                     setRestroomList(response.data);
                     history.push({ pathname: "/restrooms" });
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => errorHandler(error));
         }
     }, [targetLocation]);
+
+    const errorHandler = (message) => {
+        setShowToast(true);
+        setErrorMessage(message.toString());
+    };
 
     const formSubmitHandler = (
         targetLocation,
@@ -60,7 +68,19 @@ function App() {
                 </Link>
             </header>
             <main>
-                <LocationForm onSubmit={formSubmitHandler} />
+                <Toast
+                    onClose={() => setShowToast(false)}
+                    show={showToast}
+                    delay={3000}
+                    autohide
+                    style={{ color: "red" }}
+                >
+                    <Toast.Body>{errorMessage}</Toast.Body>
+                </Toast>
+                <LocationForm
+                    onSubmit={formSubmitHandler}
+                    onError={errorHandler}
+                />
                 <hr />
                 <Route path="/" exact component={Homepage} />
                 <LoadScript

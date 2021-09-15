@@ -7,12 +7,14 @@ body {
     background-attachment: fixed;
     background-size: cover;
     height: 100%;
+    position: relative;
 }
 
 .App {
     text-align: center;
     font-family: "Glory", sans-serif;
     font-size: large;
+    min-height: 100vh;
 }
 
 .App-header {
@@ -42,6 +44,7 @@ body {
 
 main {
     padding: 10px;
+    padding-bottom: 2.5rem;
 }
 
 .location-name-text {
@@ -51,6 +54,14 @@ main {
 
 p {
     margin: 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 2.5rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 small {

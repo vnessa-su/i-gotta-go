@@ -26,21 +26,19 @@ function RestroomDetails({ data, startLocation }) {
     const containerStyle = {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        margin: "10px 0px 10px 0px",
+        marginTop: "10px",
+        marginBottom: "10px",
+        padding: "10px 50px 10px 10px",
         backgroundColor: "rgba(255, 255, 255, 0.8)",
         borderRadius: "10px",
     };
 
     const labelStyle = {
         textAlign: "right",
-        width: "20vw",
     };
 
     const infoStyle = {
         textAlign: "left",
-        width: "70vw",
     };
 
     return (
@@ -76,34 +74,34 @@ function RestroomDetails({ data, startLocation }) {
             />
             <Container style={containerStyle}>
                 <Row>
-                    <Col md={5} style={labelStyle}>
+                    <Col sm={3} style={labelStyle}>
                         <p>
                             <strong>Address:</strong>
                         </p>
                     </Col>
-                    <Col md={7} style={infoStyle}>
+                    <Col sm={9} style={infoStyle}>
                         <p>
                             {data.street}, {data.city}, {data.state}
                         </p>
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={5} style={labelStyle}>
+                    <Col sm={3} style={labelStyle}>
                         <p>
                             <strong>Location Directions:</strong>
                         </p>
                     </Col>
-                    <Col sm={7} style={infoStyle}>
+                    <Col sm={9} style={infoStyle}>
                         <p>{data.directions}</p>
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={5} style={labelStyle}>
+                    <Col sm={3} style={labelStyle}>
                         <p>
                             <strong>Comments:</strong>
                         </p>
                     </Col>
-                    <Col sm={7} style={infoStyle}>
+                    <Col sm={9} style={infoStyle}>
                         <p>{data.comment}</p>
                     </Col>
                 </Row>

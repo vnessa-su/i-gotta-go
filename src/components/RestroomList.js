@@ -1,23 +1,34 @@
 import React from "react";
 import RestroomItem from "./RestroomItem";
 import ListMap from "./ListMap";
+import ListGroup from "react-bootstrap/ListGroup";
 
 function RestroomList({ location, restrooms, onRestroomClick }) {
+    const listStyle = {
+        maxWidth: "800px",
+        margin: "0 auto",
+        marginTop: "10px",
+    };
     return (
         <div>
-            <h2>Restrooms near {location.name}</h2>
+            <h2>
+                Restrooms near{" "}
+                <span className="location-name-text">{location.name}</span>
+            </h2>
             <ListMap
                 location={location}
                 restrooms={restrooms}
                 onLinkClick={onRestroomClick}
             />
-            {restrooms.map((restroom) => (
-                <RestroomItem
-                    key={restroom.id}
-                    data={restroom}
-                    onClick={onRestroomClick}
-                />
-            ))}
+            <ListGroup style={listStyle}>
+                {restrooms.map((restroom) => (
+                    <RestroomItem
+                        key={restroom.id}
+                        data={restroom}
+                        onClick={onRestroomClick}
+                    />
+                ))}
+            </ListGroup>
         </div>
     );
 }

@@ -8,6 +8,7 @@ function RestroomList({ location, restrooms, onRestroomClick }) {
         maxWidth: "800px",
         margin: "0 auto",
         marginTop: "10px",
+        marginBottom: "10px",
     };
     return (
         <div>
